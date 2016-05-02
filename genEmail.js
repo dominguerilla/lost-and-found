@@ -358,7 +358,7 @@ if (form.choice[9].checked && form.location.selectedIndex == 0)  {
 //IF Statement for VALUABLES found at ARC
 
 if ((form.choice[2].checked ||  form.choice[3].checked ||  form.choice[5].checked ||  form.choice[7].checked  || otherIsValuable) && form.location.selectedIndex == 0)  {
-
+	
 	z++;
 	postNote[z] = "Valuables such as wallets, cellphones, keys, and bags will be immediately stored for safekeeping and can only be retrieved when a supervisor or manager is present."
 }
@@ -371,13 +371,23 @@ if (form.choice[0].checked && form.location.selectedIndex == 0)  {
 	postNote[z] = "Flash drives that have not been claimed before the end of the day are stored for safekeeping and can only be retrieved when a supervisor or manager is present.  Feel free to contact us to see if someone is available to retrieve your possessions.";
 }
 
-//IF statement for VALUABLE ITEMS found at C4, DLib, DCent
+//IF statement for VALUABLES found at BEST
 
+if ((form.choice[2].checked ||  form.choice[3].checked ||  form.choice[5].checked ||  form.choice[7].checked  || otherIsValuable) && form.location.selectedIndex == 1)  {
+	
+	var moveDate = new Date();
+	moveDate.setDate(moveDate.getDate() + 1);
+	z++;
+	postNote[z] = "Valuables such as wallets, cellphones, keys, bags, or sensitive documents will be stored at BEST for the rest of today, but will be moved to ARC by the morning of " + moveDate.toDateString() + ".";
+}
+
+//IF statement for VALUABLE ITEMS found at C4, DLib, DCent
+/*
 if ((form.choice[2].checked ||  form.choice[3].checked ||  form.choice[5].checked ||  form.choice[6].checked ||  form.choice[9].checked  || otherIsValuable)&& !form.location.selectedIndex == 0)  {
 
 	z++;
 	postNote[z] = "Wallets, bags, electronics, and other valuables will be turned in to the front desk by the end of my shift, or by closing time.";
-}
+}*/
 
 //Universal post-note for contacting
 
