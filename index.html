@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lost and Found E-mail Generator</title>
+<link rel="stylesheet" type="text/css" href="style2.css" />
+<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/faviconfavicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+<link rel="manifest" href="images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<script src="acquire_name.js" type="text/javascript"></script>
+<script src="genEmail.js" type="text/javascript"></script>
+<script src="preview.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function refreshFields (form)  {
+
+form.consultantId.value = ""
+form.consultantName.value = ""
+form.consultantRole.value = "Assistant Lab Supervisor"
+form.patronId.value = ""
+form.patronName.value = ""
+form.LineNum.value = ""
+form.patronAcctClass[0].checked = false
+form.patronAcctClass[1].checked = false
+form.patronAcctClass[2].checked = true
+form.patronAcctClass[3].checked = false
+form.location.selectedIndex = 0
+form.timeYear.selectedIndex = 0
+form.choice[0].checked = false
+form.choice[1].checked = false
+form.choice[2].checked = false
+form.choice[3].checked = false
+form.choice[4].checked = false
+form.choice[5].checked = false
+form.choice[6].checked = false
+form.choice[7].checked = false
+form.choice[8].checked = false
+form.choice[9].checked = false
+form.choice[10].checked = false
+form.toField.value = ""
+form.ccField.value = ""
+form.subjectField.value = ""
+form.bodyField.value = ""
+
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+	<div id="content">
+
+<!-- Adrian Kabigting's Code with contributions from Andrew Blackburn and Kaitlyn Herthel, modified for Busch by Pierre Saad-->
+
+
+<br />
+<br>
+Welcome to the Busch Supervisor Lost and Found E-mail Generator!<br />Few things to get you started:<br />Once you fill in the Supervisor NetID, your name should show up.  If it doesn't, then just fill it in yourself.  You can modify the acquire_name.js later with your netid and name following the format that is there, so that your name autofills in the future.  Patron names and netIDs have to be put in manually; for your convenience, there is a link below that links to search.rutgers.edu in a new window, as well as for webmail.  Feel free to edit any part of the generated fields if any corrections are needed.  Once the e-mail is sent, the patron, you, and arc_lab will receive a copy of the e-mail.  MAKE SURE TO VERIFY ALL GENERATED FIELDS AND PREVIEW BEFORE SENDING.<br /><br />
+<a href="http://search.rutgers.edu" target="_blank">NetID Lookup</a> <br />
+<a href="http://mail.scarletmail.rutgers.edu" target="_blank">ScarletMail</a>
+
+<br />
+
+<form target="newWin" align="left" action="http://nbcs.rutgers.edu/ccf/busch/LostAndFound/contact.php" name="genEmail" method="post">
+<table border="0">
+
+	<tr>
+		<td><b>Supervisor NetID:</b></td>
+		<td><input type="text" name="consultantId" onKeyUp="acquireName(this.form)"/></td>
+	</tr>
+
+	<tr>
+		<td><b>Supervisor Name:</b></td>
+		<td><input type="text" name="consultantName" /></td>
+	</tr>
+	
+	<tr>
+		<td><b>Supervisor Role:</b></td>
+		<td><input type="text" name="consultantRole" value="Assistant Lab Supervisor"/></td>
+	</tr>
+	
+	<tr>
+		<td><b>Patron NetID (email prefix):</b></td>
+		<td><input type="text" name="patronId" /></td>
+	</tr>
+
+	<tr>
+		<td><b>Patron Name:	</b></td>
+		<td><input type="text" name="patronName" /></td>
+	</tr>
+	
+	<tr>
+		<td><b>Item Line Number:	</b></td>
+		<td><input type="text" name="LineNum" /></td>
+	</tr>	
+	
+
+	<tr>
+		<td align="center" colspan="2"><b>Patron Account Type:</b>		
+			<br />
+			<input type="radio" name="patronAcctClass" value="eden." />Eden
+			<input type="radio" name="patronAcctClass" value="rci." />RCI			
+			<input type="radio" name="patronAcctClass" value="scarletmail." checked=true />Scarletmail
+			<input type="radio" name="patronAcctClass" value="" />@rutgers
+			<input type="radio" name="patronAcctClass" value="" />Other
+		</td>
+	</tr>
+
+	<tr>
+		<td align="center" colspan="2"><b>Site:</b><br />
+			<select name="location" defaultvalue="4">
+				<option Selected>ARC Computing Center</option>
+				<option>BEST Computing Center</option>
+			</select>
+			<br />
+			<br />
+			<b>Type of Hours:</b>
+			<br />
+			<select name="timeYear">
+				<option Selected>Regular Semester Hours</option>
+				<option>Summer Break Hours</option>
+				<option>Winter Break Hours</option>
+				<option>Spring Break Hours</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center"><b>Check all that apply:</b>
+			<table>
+				<tr>
+					<td><input type="checkbox" name="choice" value="Flash Drive">Flash Drive</td>
+					<td><input type="checkbox" name="choice" value="RU Connection Card">RU Connection Card</td>
+					<td><input type="checkbox" name="choice" value="Wallet">Wallet</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="choice" value="Bag/Purse">Bag/Purse</td>
+					<td colspan="2"><input type="checkbox" name="choice" value="Driver's License/State ID">Driver's License/State ID</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="choice" value="Cellphone">Cellphone</td>
+					<td><input type="checkbox" name="choice" value="Music player (e.g. iPod, Zune)">Music player</td>
+					<td><input type="checkbox" name="choice" value="Keys">Keys</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="choice" value="Textbook/Notebook">Textbook/Notebook</td>
+					<td><input type="checkbox" name="choice" value="Laptop">Laptop</td>
+					<td><input type="checkbox" name="choice" value="">Other</table></td></td>
+				</tr>
+				<tr>
+					<td align="center" colspan="2">
+						<input type="button" name="submit" value="Generate E-mail" onClick="leFunction(this.form)"/>
+						<input type="button" name="refresh" value="Refresh Fields" onClick="refreshFields(this.form)" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+		<td><b><a onClick="javascript:  document.genEmail.fromField.value=prompt('Edit From')">F</a>rom:</b></td><td>		<input type="text" name="fromField" size="70"  readonly="readonly"/><input type="hidden" name="bccField" id="bccField" /></td>
+	</tr>
+	<tr>
+		<td><b>To:</b></td><td>		<input type="text" name="toField" size="70"  /></td>
+	</tr>
+	<tr>
+		<td><b><a onClick="javascript: document.genEmail.ccField.value=prompt('Edit CC')">C</a>C:</b></td><td>		<input type="text" name="ccField" size="70" readonly="readonly"/></td>
+	</tr>
+	<tr>
+		<td><b>Subject:</b></td><td>	<input type="text" name="subjectField" size="70" /></td>
+	</tr>
+	<tr>
+		<td colspan="2"><b>Message:</b><br />
+			<textarea cols="65" rows="25" name="bodyField" id="bodyField"></textarea><br />
+			<input type="button" value="Preview" onClick="previewpop()" /><input type="submit" value="Send"/>
+		
+		</td>
+	</tr>
+</table>
+
+
+
+</form>
+
+<a href="editor.php" target="_blank" class="hidden">Click here to edit netID listing easily</a>
+
+</div>
+<!-- end #content -->
+
+</div>
+<!-- end #page -->
+
+</body>
+</html>  
